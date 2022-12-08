@@ -1,43 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit index{% endblock %}
+{% block title %}BSB | Produits{% endblock %}
 
 {% block body %}
-    <h1>Produit index</h1>
+    <h1 class="mt-3">Les produits disponibles :</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>Stock</th>
-                <th>Photo</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for produit in produits %}
-            <tr>
-                <td>{{ produit.id }}</td>
-                <td>{{ produit.nom }}</td>
-                <td>{{ produit.description }}</td>
-                <td>{{ produit.prix }}</td>
-                <td>{{ produit.stock }}</td>
-                <td>{{ produit.photo }}</td>
-                <td>
-                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% for produit in produits %}
+        <div class="card" style="width: 18rem;">
+            <img src="#" class="card-img-top" alt="{{ produit.nom }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ produit.nom }}</h5>
+                <p class="card-text">{{ produit.description }}</p>
+                <a href="{{ path('app_produit_show', {'id': produit.id}) }}">Détails</a>
+            </div>
+        </div>
+    {% else %}
+        <h5>Il n'a aucun produit</h5>
+    {% endfor %}
 
-    <a href="{{ path('app_produit_new') }}">Create new</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_produit_new') }}" class="btn btn-primary">Créer un nouveau produit</a>
+    {% endif %}
 {% endblock %}
