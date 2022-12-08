@@ -21,10 +21,10 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="{{path('accueil') }}">Accueil</a>
+                                <a class="nav-link active text-light" aria-current="page" href="">Accueil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="{{path('app_article_index') }}">Articles</a>
+                                {# <a class="nav-link active text-light" aria-current="page" href="{{path('app_article_index') }}">Articles</a> #}
                             </li>
                             {% if is_granted('ROLE_USER') %}
                                 <li class="nav-item btn btn-danger"><a href="{{path('app_logout')}}" class="text-light" style="text-decoration: none;">Déconnexion</a></li>
