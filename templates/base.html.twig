@@ -21,7 +21,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active text-light" aria-current="page" href="">Accueil</a>
+                                <a class="nav-link active text-light" aria-current="page" href="{{path('app_produit_index') }}">Accueil</a>
                             </li>
                             <li class="nav-item">
                                 {# <a class="nav-link active text-light" aria-current="page" href="{{path('app_article_index') }}">Articles</a> #}
@@ -29,8 +29,8 @@
                             {% if is_granted('ROLE_USER') %}
                                 <li class="nav-item btn btn-danger"><a href="{{path('app_logout')}}" class="text-light" style="text-decoration: none;">Déconnexion</a></li>
                             {% else %}
-                                <li class="nav-item btn btn-success"><a class="text-light mr-4" href="{{path('app_login')}}" style="text-decoration: none;">Connexion</a></li>
-                                <li class="nav-item btn btn-primary"><a class="text-light" class="nav-link active text-light" href="{{path('app_register')}}" style="text-decoration: none;">Inscription</a></li>
+                                {# <li class="nav-item btn btn-success"><a class="text-light mr-4" href="{{path('app_login')}}" style="text-decoration: none;">Connexion</a></li> #}
+                                {# <li class="nav-item btn btn-primary"><a class="text-light" class="nav-link active text-light" href="{{path('app_register')}}" style="text-decoration: none;">Inscription</a></li> #}
                             {% endif %}
                         </ul>
                     </div>
