@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ContenuPanierRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContenuPanierRepository::class)]
 class ContenuPanier
@@ -23,11 +24,16 @@ class ContenuPanier
     private ?Panier $panier = null;
 
     #[ORM\Column]
+    #[Assert\PositiveOrZero]
     private ?int $quantite = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
+    public function __construct()
+    {
+        $this->date = \DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
+    }
     public function getId(): ?int
     {
         return $this->id;

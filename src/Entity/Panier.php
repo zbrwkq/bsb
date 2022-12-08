@@ -31,6 +31,7 @@ class Panier
     public function __construct()
     {
         $this->contenuPaniers = new ArrayCollection();
+        $this->etat = false;
     }
 
     public function getId(): ?int
