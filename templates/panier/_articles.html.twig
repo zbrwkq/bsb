@@ -1,9 +1,9 @@
 <table class="table table-striped">
     <thead>
-        <th>Nom</th>
-        <th>Quantité</th>
-        <th>Prix</th>
-        <th>Montant total</th>
+        <th>{{'Produit'|trans}}</th>
+        <th>{{'Quantité'|trans}}</th>
+        <th>{{'Prix'|trans}}</th>
+        <th>{{'Total'|trans}}</th>
         <th></th>
     </thead>
     <tbody>
@@ -14,12 +14,12 @@
                 <td>{{ article.produit.prix }}€</td>
                 <td>{{ article.produit.prix * article.quantite }}€</td>
                 <td>
-                    <a href="#" class="btn btn-danger">Supprimer</a>
+                    <a href="#" class="btn btn-danger">{{'Supprimer'|trans}}</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">Votre panier est vide.</td>
+                <td colspan="5">{{'panier.Votre panier est vide'|trans}}</td>
             </tr>
         {% endfor %}
     </tbody>

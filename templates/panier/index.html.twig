@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}BSB | Mon panier{% endblock %}
+{% block title %}BSB | {{'panier.mon'|trans}}{% endblock %}
 
 {% block body %}
     {% if panier is null %}
-        <p>Panier vide</p>
+        <p>{{'panier.vide'|trans}}</p>
     {% else %}
         {{ include('panier/_articles.html.twig') }}
         {% set montantPanier = 0 %}
@@ -13,8 +13,8 @@
         {% endfor %}
 
         <div class="d-flex justify-content-between">
-            <h5>Montant panier : {{ montantPanier }}€</h5>
-            <a href="{{ path('app_panier_achat') }}" class="btn btn-outline-info">Acheter le panier</a>
+            <h5>{{'Montant panier'|trans}} : {{ montantPanier }}€</h5>
+            <a href="{{ path('app_panier_achat') }}" class="btn btn-outline-info">{{'panier.acheter'|trans}}</a>
         </div>
     {% endif %}
 {% endblock %}

@@ -22,6 +22,16 @@ Details: Details
 Photo: Photo
 unitees: units
 Supprimer: Delete
+Description: Description
+Prix: Price
+Stock: Stock
+Photo du produit (jpg, png, webp): product photo (jpg, png, webp)
+Commande: Order
+Produit: Product
+Quantite: Quantity
+Total: Total
+Montant panier: Subtotal
+Bonjour: Hello
 
 compte:
   supprimer: Delete the account
@@ -40,12 +50,12 @@ produit:
   aucun: There is no product
   detail: '%sujet% details'
   modifier: Update product
+  modifier_produit: Updating %sujet%
 
 Panier: Cart
 panier:
   ajouter: Add to cart
-
-Description: Description
-Prix: Price
-Stock: Stock
-Photo du produit (jpg, png, webp): product photo (jpg, png, webp)
+  mon: My cart
+  acheter: Buy cart
+  vide: Cart empty
+  Votre panier est vide: Votre panier est vide
