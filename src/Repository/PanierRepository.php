@@ -55,6 +55,17 @@ class PanierRepository extends ServiceEntityRepository
    }
     
 
+    public function nbPanier($id){
+        $req = 'SELECT COUNT(id) AS nbPanier FROM panier WHERE utilisateur_id = ?';
+
+        $conn = $this->getEntityManager()
+            ->getConnection();
+
+        $stmt = $conn->prepare($req);
+        $resultSet = $stmt->executeQuery([$id]);
+        return $resultSet->fetchAssociative();
+    }
+
 //    /**
 //     * @return Panier[] Returns an array of Panier objects
 //     */

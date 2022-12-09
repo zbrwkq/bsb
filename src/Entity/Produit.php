@@ -34,7 +34,6 @@ class Produit
     private ?int $stock = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank]
     private ?string $photo = null;
 
     public function getId(): ?int

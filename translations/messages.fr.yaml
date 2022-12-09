@@ -1,6 +1,6 @@
 Log in: Se connecter
 Password: Mot de passe
-Sign in: Se connecet
+Sign in: Se connecter
 Register: S'inscrire
 Nom: Nom
 Prenom: Prenom
@@ -22,3 +22,7 @@ compte:
 commande:
   historique: Historique des commandes
   vide: Aucune commande
+accueil:
+  titre: Les produits disponibles
+  aucunProduit: Il n'y a aucun produit
+  btnCreerProduit: Créer un nouveau produit
