@@ -12,23 +12,23 @@
         </thead>
         <tbody>
             {% for panier in panierNonAchetes %}
-                {% if not panier.etat %}
+                {% if panier.etat == 0 %}
                     <tr>
                         <td>{{ panier.user.prenom }} {{ panier.user.nom }}</td>
                         <td>{{ panier.id }}</td>
                         <td>
                             <ul>
                                 {% for article in panier.contenuPaniers %}
-                                    <li>{{ article.produit.nom }}</li>
+                                    <li>{{ article.produit.nom }} <b>x{{ article.quantite }}</b></li>
                                 {% endfor %}
                             </ul>
                         </td>
                     </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="3">Il n'y a aucun panier non acheté</td>
-                    </tr>
                 {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="3">Il n'y a aucun panier non acheté</td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>

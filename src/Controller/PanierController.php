@@ -59,8 +59,6 @@ class PanierController extends AbstractController
     #[Route('/non-achetes', name: 'app_non_achetes')]
     public function paniersNonAchetes(PanierRepository $panier): Response
     {
-        // dump($panier->findAll());
-        // die;
         return $this->render('panier/non_achetes.html.twig', [
             'panierNonAchetes' => $panier->findAll(),
         ]);
