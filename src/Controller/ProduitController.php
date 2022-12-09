@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('{_locale}/produit')]
 class ProduitController extends AbstractController
@@ -18,7 +19,7 @@ class ProduitController extends AbstractController
     /**
      * Permet l'affichage et, si nous sommes admin, de récupérer le formulaire d'ajout de produit
      */
-    public function index(Request $request, ProduitRepository $produitRepository): Response
+    public function index(Request $request, ProduitRepository $produitRepository, TranslatorInterface $translator): Response
     {
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
@@ -36,7 +37,7 @@ class ProduitController extends AbstractController
                         $newPhotoName
                     );
                 }catch(FileException $e){
-                    $this->addFlash('danger', 'Impossible d\'ploader l\'image');
+                    $this->addFlash('danger', $translator->trans('flash.produit.erreur.upload_image'));
                     return $this->redirectToRoute('app_produit_new');
                 }
 
@@ -45,7 +46,7 @@ class ProduitController extends AbstractController
             }
 
             $produitRepository->save($produit, true);
-            $this->addFlash('success', 'Le produit à été ajouté');
+            $this->addFlash('success', $translator->trans('flash.produit.ajoute'));
 
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -71,7 +72,7 @@ class ProduitController extends AbstractController
      * Retourne le formulaire d'édition d'un produit
      */
     #[Route('/edit/{id}', name: 'app_produit_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
+    public function edit(Request $request, Produit $produit, ProduitRepository $produitRepository, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
@@ -79,8 +80,8 @@ class ProduitController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $produitRepository->save($produit, true);
 
-            $this->addFlash('success', 'L\'article a bien été modifié');
-            return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', $translator->trans('flash.produit.modifie'));
+            return $this->redirectToRoute('app_produit_show', ['id' => $produit->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('produit/edit.html.twig', [
@@ -93,13 +94,13 @@ class ProduitController extends AbstractController
      * Permet de supprimer un produit
      */
     #[Route('/{id}', name: 'app_produit_delete', methods: ['POST'])]
-    public function delete(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
+    public function delete(Request $request, Produit $produit, ProduitRepository $produitRepository, TranslatorInterface $translator): Response
     {
         if ($this->isCsrfTokenValid('delete'.$produit->getId(), $request->request->get('_token'))) {
             $produitRepository->remove($produit, true);
         }
 
-        $this->addFlash('success', 'Le produit a bien été supprimé');
+        $this->addFlash('success', $translator->trans('flash.produit.supprime'));
         return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
     }
 }

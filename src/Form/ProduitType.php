@@ -27,6 +27,7 @@ class ProduitType extends AbstractType
                         'maxSize' => '1024k',
                         'mimeTypes' => [
                             'image/jpg',
+                            'image/jpeg',
                             'image/png',
                             'image/webp',
                         ],
