@@ -28,6 +28,8 @@ Quantite: Quantite
 Total: Total
 Montant panier: Montant panier
 Bonjour: Bonjour
+inscrits_du_jour: Inscrits du jour
+paniers_non_achetes: Paniers non achetes 
 
 compte:
   supprimer: Supprimer le compte
@@ -56,3 +58,28 @@ panier:
   acheter: Achter le panier
   vide: Panier vide
   Votre panier est vide: Your cart is empty
+
+inscrits:
+  liste_des_personnes_inscrites_aujourdhui: Liste des personnes inscrites aujourd'hui
+  nom_prenom: Nom / Prénom
+  email: Email
+  date_inscription: Date d'inscription
+  derniers_inscrits: Derniers inscrits
+  personne: Aucun utilisateur inscrit aujourd'hui
+
+paniers_non:
+  titre: Paniers non achetés
+  liste_des_paniers_non_achetes: Liste des paniers non achetés
+  utilisateur: Utilisateur
+  n_panier:  N° panier
+  contenu_panier: Contenu du panier
+  non: Il n'y a aucun panier non acheté
+
+erreur404:
+  titre: Erreur 404
+
+erreur500:
+  titre: Erreur 500
+
+erreur:
+  titre: Une erreur est survenue

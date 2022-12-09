@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Derniers inscrits{% endblock %}
+{% block title %}{{ 'inscrits.derniers_inscrits'|trans }}{% endblock %}
 
 {% block body %}
-    <h1 class="mt-3">Liste des personnes inscrites aujourd'hui :</h1>
+    <h1 class="mt-3">{{ 'inscrits.liste_des_personnes_inscrites_aujourdhui'|trans }}</h1>
     <table class="table">
         <thead>
-            <th>Nom / Prénom</th>
-            <th>Email</th>
-            <th>Date d'inscription</th>
+            <th>{{ 'inscrits.nom_prenom'|trans }}</th>
+            <th>{{ 'inscrits.email'|trans }}</th>
+            <th>{{ 'inscrits.date_inscription'|trans }}</th>
         </thead>
         <tbody>
             {% for user in users %}
@@ -19,7 +19,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="3">Aucun utilisateur inscrit aujourd'hui</td>
+                    <td colspan="3">{{ 'inscrits.personne'|trans }}</td>
                 </tr>
             {% endfor %}
         </tbody>

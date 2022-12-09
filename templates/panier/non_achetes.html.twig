@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}BSB | Paniers non achetés{% endblock %}
+{% block title %}BSB | {{ 'paniers_non.titre'|trans }}{% endblock %}
 
 {% block body %}
-    <h1 class="mt-3">Liste des paniers non achetés :</h1>
+    <h1 class="mt-3">{{ 'paniers_non.liste_des_paniers_non_achetes'|trans }} :</h1>
     <table class="table">
         <thead>
-            <th>Utilisateur</th>
-            <th>N° panier</th>
-            <th>Contenu du panier</th>
+            <th>{{ 'paniers_non.utilisateur'|trans }}</th>
+            <th>{{ 'paniers_non.n_panier'|trans }}</th>
+            <th>{{ 'paniers_non.contenu_panier'|trans }}</th>
         </thead>
         <tbody>
             {% for panier in panierNonAchetes %}
@@ -27,7 +27,7 @@
                 {% endif %}
             {% else %}
                 <tr>
-                    <td colspan="3">Il n'y a aucun panier non acheté</td>
+                    <td colspan="3">{{ 'paniers_non.non'|trans }}</td>
                 </tr>
             {% endfor %}
         </tbody>

@@ -32,6 +32,8 @@ Quantite: Quantity
 Total: Total
 Montant panier: Subtotal
 Bonjour: Hello
+inscrits_du_jour: Registred today
+paniers_non_achetes: Baskets not purchased 
 
 compte:
   supprimer: Delete the account
@@ -59,3 +61,28 @@ panier:
   acheter: Buy cart
   vide: Cart empty
   Votre panier est vide: Votre panier est vide
+
+inscrits:
+  liste_des_personnes_inscrites_aujourdhui: List of registrants today
+  nom_prenom: Name / Firstname
+  email: Email
+  date_inscription: Date of registration
+  derniers_inscrits: Latest registrants
+  personne: No registered users today
+
+paniers_non:
+  titre: Carts not purchased
+  liste_des_paniers_non_achetes: List of unpurchased baskets
+  utilisateur: User
+  n_panier:  Cart N°
+  contenu_panier: Cart Contents
+  non: There are no unbought carts
+
+erreur404:
+  titre: 404 error
+
+erreur500:
+  titre: 500 error
+
+erreur:
+  titre: An error has occurred
