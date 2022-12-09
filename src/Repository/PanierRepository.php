@@ -38,10 +38,27 @@ class PanierRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findByUserAndEtat(int $id, bool $etat): array
+   {
+       return $this->createQueryBuilder('p')
+           ->andWhere('p.utilisateur = :id')
+           ->andWhere('p.etat = :etat')
+           ->setParameters([
+            'id' => $id,
+            'etat' => $etat
+           ])
+           ->orderBy('p.id', 'DESC')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+    
 
 //    /**
 //     * @return Panier[] Returns an array of Panier objects
 //     */
+//    
 //    public function findByExampleField($value): array
 //    {
 //        return $this->createQueryBuilder('p')
