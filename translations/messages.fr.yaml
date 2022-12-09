@@ -27,6 +27,7 @@ Produit: Produit
 Quantite: Quantite
 Total: Total
 Montant panier: Montant panier
+Prix: Prix
 Bonjour: Bonjour
 
 compte:
@@ -55,4 +56,9 @@ panier:
   mon: Mon panier
   acheter: Achter le panier
   vide: Panier vide
-  Votre panier est vide: Your cart is empty
+  Votre panier est vide: Votre panier est vide
+
+flash:
+  panier:
+    ajoute: Le produit a bien été ajouté au panier
+    supprime: Le produit a bien été supprimé du panier

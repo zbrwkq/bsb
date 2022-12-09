@@ -59,3 +59,9 @@ panier:
   acheter: Buy cart
   vide: Cart empty
   Votre panier est vide: Votre panier est vide
+
+
+flash:
+  produit:
+    ajoute: Product successfully added to cart
+    supprime: Product successfully deleted to cart
