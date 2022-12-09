@@ -21,27 +21,27 @@ class PanierController extends AbstractController
         ]);
     }
 
+    // Passe l'etat du panier actif de l'utilisateur a 1 et met à jour la date d'achat
     #[Route('/panier/achat', name: 'app_panier_achat')]
     public function achatPanier(EntityManagerInterface $em): Response
     {
-        foreach($this->getUser()->getPanier() as $p){
-            if(!$p->isEtat()){
-                $dateAchat = date('Y-m-d H:i:s');
-                $p->setDateAchat(\DateTime::createFromFormat('Y-m-d H:i:s', $dateAchat));
-                $p->setEtat(1);
-
-                foreach($p->getContenuPaniers() as $cp){
-                    $produit = $cp->getProduit();
-                    $produit->setStock($produit->getStock() - $cp->getQuantite());
-                    $em->persist($produit);
-                }
-
-                $em->persist($p);
-                $em->flush();
-
-                $this->addFlash('success', 'Votre commande est validée');
-                return $this->redirectToRoute('app_produit_index');
+        $p = $this->getUser()->getActivePanier();
+        if($p != null){
+            date_default_timezone_set('Europe/Paris');
+            $p->setDateAchat(\DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s')));
+            $p->setEtat(1);
+    
+            foreach($p->getContenuPaniers() as $cp){
+                $produit = $cp->getProduit();
+                $produit->setStock($produit->getStock() - $cp->getQuantite());
+                $em->persist($produit);
             }
+    
+            $em->persist($p);
+            $em->flush();
+    
+            $this->addFlash('success', 'Votre commande est validée');
+            return $this->redirectToRoute('app_commande', ['id' => $p->getId()]);
         }
 
         $this->addFlash('danger', 'Une erreur est survenue');
