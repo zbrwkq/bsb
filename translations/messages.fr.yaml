@@ -17,12 +17,31 @@ Informations mise à jour: Informations mise à jour
 Retour: Retour
 Date: Date
 Montant: Montant
+Sauvegarder: Sauvegarder
+Details: Détails
+Photo: Photo
+unitees: unitées
+Supprimer: Supprimer
+
 compte:
   supprimer: Supprimer le compte
+
 commande:
   historique: Historique des commandes
   vide: Aucune commande
+
 accueil:
-  titre: Les produits disponibles
   aucunProduit: Il n'y a aucun produit
   btnCreerProduit: Créer un nouveau produit
+
+produit:
+  titre: Les produits disponibles
+  creer: Création d'un nouveau produit
+  aucun: Il n'a aucun produit
+  detail: Détail de %sujet%
+  modifier: Modifier le produit
+
+  
+Panier: Panier
+panier:
+  ajouter: Ajouter au panier

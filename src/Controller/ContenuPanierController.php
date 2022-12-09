@@ -50,7 +50,7 @@ class ContenuPanierController extends AbstractController
                     $cp->setQuantite($cp->getQuantite() + 1);
                     $cpr->save($cp, true);
                     $this->addFlash('success', 'Produit ajouté au panier');
-                    return $this->redirectToRoute('app_produit_index');
+                    return $this->redirectToRoute('app_panier');
                 }
             }
 
@@ -61,7 +61,7 @@ class ContenuPanierController extends AbstractController
             $cpr->save($contenuPanier, true);
         
             $this->addFlash('success', 'Produit ajouté au panier');
-            return $this->redirectToRoute('app_produit_index');
+            return $this->redirectToRoute('app_panier');
         }
     }
 }

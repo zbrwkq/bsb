@@ -4,12 +4,12 @@
 
 {% block body %}
     {% if is_granted('ROLE_ADMIN') %}
-        <h1 class="mt-3">Création d'un nouveau produit</h1>
+        <h1 class="mt-3">{{'produit.creer'|trans}}</h1>
 
         {{ include('produit/_form.html.twig') }}
     {% endif %}
 
-    <h1 class="my-3">Les produits disponibles :</h1>
+    <h1 class="my-3">{{'produit.titre'|trans}} :</h1>
 
     {% for produit in produits %}
         <div class="card" style="width: 18rem;">
@@ -17,10 +17,10 @@
             <div class="card-body">
                 <h5 class="card-title">{{ produit.nom }}</h5>
                 <p class="card-text">{{ produit.description }}</p>
-                <a href="{{ path('app_produit_show', {'id': produit.id}) }}" class="btn btn-secondary">Détails</a>
+                <a href="{{ path('app_produit_show', {'id': produit.id}) }}" class="btn btn-secondary">{{'Details'|trans}}</a>
             </div>
         </div>
     {% else %}
-        <h5 class="my-4">Il n'a aucun produit</h5>
+        <h5 class="my-4">{{'produit.aucun'|trans}}</h5>
     {% endfor %}
 {% endblock %}

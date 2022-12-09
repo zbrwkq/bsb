@@ -34,6 +34,7 @@ class ContenuPanier
 
     public function __construct()
     {
+        date_default_timezone_set('Europe/Paris');
         $this->date = \DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
     }
     public function getId(): ?int

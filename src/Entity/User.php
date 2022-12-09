@@ -54,6 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
+        date_default_timezone_set('Europe/Paris');
         $this->date_inscription = \DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
         $this->paniers = new ArrayCollection();
     }
@@ -155,7 +156,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getActivePanier(){
         $panier = null;
 
-        foreach($this->panier as $p){
+        foreach($this->paniers as $p){
             if(!$p->isEtat()){
                 $panier = $p;
             }

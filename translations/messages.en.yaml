@@ -1,0 +1,51 @@
+Log in: Log in
+Password: Password
+Sign in: Sign in
+Register: Register
+Nom: Last name
+Prenom: First name
+Email: Email
+Agree terms: Agree terms
+Accueil: Home
+Connexion: Log in
+Inscription: Sign in
+Deconnexion: Logout
+Mon compte: My account
+Update: Update
+Mettre à jour les informations: Update informations
+Informations mise à jour: Informations updated
+Retour: Back
+Date: Date
+Montant: Amount
+Sauvegarder: Save
+Details: Details
+Photo: Photo
+unitees: units
+Supprimer: Delete
+
+compte:
+  supprimer: Delete the account
+
+commande:
+  historique: Orders history
+  vide: There is no order
+
+accueil:
+  aucunProduit: There is no product
+  btnCreerProduit: Create a new product
+
+produit:
+  titre: Available product
+  creer: Create a new product
+  aucun: There is no product
+  detail: '%sujet% details'
+  modifier: Update product
+
+Panier: Cart
+panier:
+  ajouter: Add to cart
+
+Description: Description
+Prix: Price
+Stock: Stock
+Photo du produit (jpg, png, webp): product photo (jpg, png, webp)
