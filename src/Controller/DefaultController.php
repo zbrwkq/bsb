@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
+    // Permet la redirection automatique  vers l'index
     #[Route('/', name: 'app_default')]
     public function index(): Response
     {

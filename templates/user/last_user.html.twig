@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Derniers inscrits{% endblock %}
+
+{% block body %}
+    <h1 class="mt-3">Liste des personnes inscrites aujourd'hui :</h1>
+    <table class="table">
+        <thead>
+            <th>Nom / Prénom</th>
+            <th>Email</th>
+            <th>Date d'inscription</th>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.nom }} {{ user.prenom }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.dateInscription|date('d/m/Y') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun utilisateur inscrit aujourd'hui</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

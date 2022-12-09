@@ -34,8 +34,15 @@
                                 <li class="nav-item btn btn-primary"><a class="text-light" class="nav-link active text-light" href="{{path('app_register')}}" style="text-decoration: none;">{{'Inscription'|trans}}</a></li>
                             {% endif %}
 
+                            {# Bouton du SUPER_ADMIN #}
                             {% if is_granted('ROLE_SUPER_ADMIN') %}
-                                <li class="nav-item btn btn-success"><a class="text-light mr-4" href="{{path('app_login')}}" style="text-decoration: none;">{{'Connexion'|trans}}</a></li>
+                                <div class="dropdown">
+                                    <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Super Administration</button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{ path('app_user_inscrits') }}">Inscrits du jour</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_non_achetes') }}">Panier non achetés</a></li>
+                                    </ul>
+                                </div>
                             {% endif %}
                         </ul>
                     </div>

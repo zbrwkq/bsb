@@ -15,6 +15,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route('{_locale}/compte')]
 class UserController extends AbstractController
 {
+    /**
+     * Retourne le liste des commande de l'utilisateur
+     */
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
     public function index(PanierRepository $panierRepository): Response
     {
@@ -37,7 +40,9 @@ class UserController extends AbstractController
         ]);
     }
 
-
+    /**
+     * Permet de modifier les infos de son compte
+     */
     #[Route('/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, UserRepository $userRepository, TranslatorInterface $translator): Response
     {
@@ -52,20 +57,21 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('user/edit.html.twig', [
+        return $this->render('user/edit.html.twig', [
             'user' => $user,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
-    #[Route('/delete', name: 'app_user_delete', methods: ['POST'])]
-    public function delete(Request $request, UserRepository $userRepository): Response
+    /**
+     * Retourne la liste des derniers inscrits du jour
+     */
+    #[Route('/inscrits', name: 'app_user_inscrits')]
+    public function derniersInscrits(UserRepository $ur): Response
     {
-        $user = $this->getUser();
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $userRepository->remove($user, true);
-        }
-
-        return $this->redirectToRoute('app_register', [], Response::HTTP_SEE_OTHER);
+        $date = date('Y-m-d');
+        return $this->render('user/last_user.html.twig', [
+            'users' => $ur->registerToday($date)
+        ]);
     }
 }
