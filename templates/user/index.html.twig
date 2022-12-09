@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-row justify-content-between align-items-end">
+        <h1>{{'Bonjour'|trans}} {{user.prenom}}</h1>
+        <a href="{{ path('app_user_edit')}}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+    </div>
+    <h1>{{'commande.historique'|trans}}</h1>
+    {% if commandes is empty %}
+        <h3>{{'commande.vide'|trans}}</h3>
+    {% else %}
+        <ul class="list-group">
+            {% for commande in commandes %}
+                <a href="{{ path('app_commande', {'id': commande.commande.id}) }}" class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col">#{{ commande.commande.id }}</div>
+                        <div class="col">{{ commande.commande.dateAchat|date('Y/m/d') }}</div>
+                        <div class="col-1 text-end">{{ commande.montant }}€</div>
+                    </div>
+                </a>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

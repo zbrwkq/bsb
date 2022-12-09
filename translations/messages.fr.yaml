@@ -1,8 +1,27 @@
 Log in: Se connecter
-Please sign in: Veuillez vous inscrire
 Password: Mot de passe
-Sign in: S'inscrire
-
+Sign in: Se connecter
+Register: S'inscrire
+Nom: Nom
+Prenom: Prenom
+Email: Email
+Agree terms: Accépter les termes
+Accueil: Accueil
+Connexion: Connexion
+Inscription: Inscription
+Deconnexion: Déconnexion
+Mon compte: Mon compte
+Update: Mettre à jour
+Mettre à jour les informations: Mettre à jour les informations
+Informations mise à jour: Informations mise à jour
+Retour: Retour
+Date: Date
+Montant: Montant
+compte:
+  supprimer: Supprimer le compte
+commande:
+  historique: Historique des commandes
+  vide: Aucune commande
 accueil:
   titre: Les produits disponibles
   aucunProduit: Il n'y a aucun produit

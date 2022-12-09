@@ -28,13 +28,13 @@ class ContenuPanier
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\ManyToMany(targetEntity: Panier::class, inversedBy: 'contenuPaniers')]
-    private Collection $panier;
+    #[ORM\ManyToOne(inversedBy: 'contenuPaniers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Panier $panier = null;
 
     public function __construct()
     {
         $this->date = \DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
-        $this->panier = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -77,27 +77,16 @@ class ContenuPanier
         return $this;
     }
 
-    /**
-     * @return Collection<int, Panier>
-     */
-    public function getPanier(): Collection
+    public function getPanier(): ?Panier
     {
         return $this->panier;
     }
 
-    public function addPanier(Panier $panier): self
+    public function setPanier(?Panier $panier): self
     {
-        if (!$this->panier->contains($panier)) {
-            $this->panier->add($panier);
-        }
+        $this->panier = $panier;
 
         return $this;
     }
 
-    public function removePanier(Panier $panier): self
-    {
-        $this->panier->removeElement($panier);
-
-        return $this;
-    }
 }

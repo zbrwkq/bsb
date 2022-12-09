@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PanierController!{% endblock %}
+
+{% block body %}
+    <h1>{{'Commande'|trans ~ ' #' ~ commande.id}}</h1>
+    <h3>{{'du'|trans ~ ' ' ~ commande.dateAchat|date('Y-m-d')}}</h3>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>{{'Produit'|trans}}</th>
+                <th>{{'Quantite'|trans}}</th>
+                <th>{{'Prix'|trans}}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for c in commande.contenuPaniers %}
+            <tr>
+                <td>{{ c.produit.nom }}</td>
+                <td>{{ c.quantite }}</td>
+                <td>{{ c.produit.prix }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\ContenuPanierRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Panier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,5 +45,13 @@ class PanierController extends AbstractController
 
         $this->addFlash('danger', 'Problème');
         return $this->redirectToRoute('app_produit_index');
+    }
+    
+    #[Route('/commande/{id}', name: 'app_commande')]
+    public function commande(Panier $panier): Response
+    {
+        return $this->render('panier/commande.html.twig', [
+            'commande' => $panier,
+        ]);
     }
 }

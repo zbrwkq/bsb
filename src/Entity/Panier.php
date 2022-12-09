@@ -22,16 +22,16 @@ class Panier
     #[ORM\Column]
     private ?bool $etat = null;
 
-    #[ORM\ManyToMany(targetEntity: ContenuPanier::class, mappedBy: 'panier')]
-    private Collection $contenuPaniers;
-
     #[ORM\ManyToOne(inversedBy: 'panier')]
     private ?User $user = null;
 
+    #[ORM\OneToMany(mappedBy: 'panier', targetEntity: ContenuPanier::class, orphanRemoval: true)]
+    private Collection $contenuPaniers;
+
     public function __construct()
     {
-        $this->contenuPaniers = new ArrayCollection();
         $this->etat = false;
+        $this->contenuPaniers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -63,6 +63,18 @@ class Panier
         return $this;
     }
 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, ContenuPanier>
      */
@@ -75,7 +87,7 @@ class Panier
     {
         if (!$this->contenuPaniers->contains($contenuPanier)) {
             $this->contenuPaniers->add($contenuPanier);
-            $contenuPanier->addPanier($this);
+            $contenuPanier->setPanier($this);
         }
 
         return $this;
@@ -84,20 +96,11 @@ class Panier
     public function removeContenuPanier(ContenuPanier $contenuPanier): self
     {
         if ($this->contenuPaniers->removeElement($contenuPanier)) {
-            $contenuPanier->removePanier($this);
+            // set the owning side to null (unless already changed)
+            if ($contenuPanier->getPanier() === $this) {
+                $contenuPanier->setPanier(null);
+            }
         }
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

@@ -20,26 +20,30 @@ class ContenuPanierController extends AbstractController
         $contenuPanier = new ContenuPanier();
         $panier = null;
 
+        // Verifie si un panier impayé est déjà présent et le récupère
         foreach($this->getUser()->getPanier() as $p){
             if(!$p->isEtat()){
                 $panier = $p;
             }
         }
         
+        // créé un nouveau panier sinon
         if($panier == null){
             $panier = new Panier();
 
+            // si le produit existe, l'ajoute au panier
             if($produit != null){
                 $panier->setUser($this->getUser());
                 $contenuPanier->setQuantite(1);
                 $contenuPanier->setProduit($produit);
-                $contenuPanier->addPanier($panier);
+                $contenuPanier->setPanier($panier);
 
                 $pr->save($panier, true);
                 $cpr->save($contenuPanier, true);
 
                 $this->addFlash('success', 'Produit ajouté au panier');
                 return $this->redirectToRoute('app_produit_index');
+            // sinon redirige l'utilisateur
             }else{
                 $this->addFlash('danger', 'Le produit n\'existe pas');
                 return $this->redirectToRoute('app_produit_index');
@@ -56,7 +60,7 @@ class ContenuPanierController extends AbstractController
 
             $contenuPanier->setQuantite(1);
             $contenuPanier->setProduit($produit);
-            $contenuPanier->addPanier($panier);
+            $contenuPanier->setPanier($panier);
             $cpr->save($contenuPanier, true);
         
             $this->addFlash('success', 'Produit ajouté au panier');
