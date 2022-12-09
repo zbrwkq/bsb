@@ -16,7 +16,7 @@ class PanierController extends AbstractController
     public function index(ContenuPanierRepository $cpr): Response
     {
         return $this->render('panier/index.html.twig', [
-            'articles' => $cpr->findAll(),
+            'panier' => $this->getUser()->getActivePanier(),
         ]);
     }
 

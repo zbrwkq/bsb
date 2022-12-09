@@ -21,7 +21,6 @@ class ContenuPanierController extends AbstractController
 
         // recupère la panier impayé, null si aucun panier n'est impayé
         $panier = $this->getUser()->getActivePanier();
-
         
         // Si aucun panier créé un nouveau panier et insère dans la bdd
         if($panier == null){
@@ -38,7 +37,7 @@ class ContenuPanierController extends AbstractController
                 $cpr->save($contenuPanier, true);
 
                 $this->addFlash('success', 'Produit ajouté au panier');
-                return $this->redirectToRoute('app_produit_index');
+                return $this->redirectToRoute('app_panier');
             // sinon redirige l'utilisateur
             }else{
                 $this->addFlash('danger', 'Le produit n\'existe pas');
@@ -54,7 +53,7 @@ class ContenuPanierController extends AbstractController
                     return $this->redirectToRoute('app_produit_index');
                 }
             }
-            
+
             // ajoute le produit sinon
             $contenuPanier->setQuantite(1);
             $contenuPanier->setProduit($produit);

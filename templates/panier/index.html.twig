@@ -3,15 +3,18 @@
 {% block title %}BSB | Mon panier{% endblock %}
 
 {% block body %}
-    {{ include('panier/_articles.html.twig') }}
+    {% if panier is null %}
+        <p>Panier vide</p>
+    {% else %}
+        {{ include('panier/_articles.html.twig') }}
+        {% set montantPanier = 0 %}
+        {% for a in panier.contenuPaniers %}
+            {% set montantPanier = montantPanier + (a.quantite * a.produit.prix) %}
+        {% endfor %}
 
-    {% set montantPanier = 0 %}
-    {% for a in articles %}
-        {% set montantPanier = montantPanier + (a.quantite * a.produit.prix) %}
-    {% endfor %}
-
-    <div class="d-flex justify-content-between">
-        <h5>Montant panier : {{ montantPanier }}€</h5>
-        <a href="{{ path('app_panier_achat') }}" class="btn btn-outline-info">Acheter le panier</a>
-    </div>
+        <div class="d-flex justify-content-between">
+            <h5>Montant panier : {{ montantPanier }}€</h5>
+            <a href="{{ path('app_panier_achat') }}" class="btn btn-outline-info">Acheter le panier</a>
+        </div>
+    {% endif %}
 {% endblock %}
