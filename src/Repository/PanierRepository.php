@@ -41,7 +41,7 @@ class PanierRepository extends ServiceEntityRepository
     public function findByUserAndEtat(int $id, bool $etat): array
    {
        return $this->createQueryBuilder('p')
-           ->andWhere('p.utilisateur = :id')
+           ->andWhere('p.user = :id')
            ->andWhere('p.etat = :etat')
            ->setParameters([
             'id' => $id,

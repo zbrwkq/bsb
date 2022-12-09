@@ -26,8 +26,8 @@ class UserController extends AbstractController
                 'montant' => 0
             ];
 
-            foreach ($commande->getContenuPaniers() as $produit) {
-                $commandes[$commande->getId()]['montant'] += $produit->getPrix();
+            foreach ($commande->getContenuPaniers() as $cp) {
+                $commandes[$commande->getId()]['montant'] += $cp->getProduit()->getPrix() * $cp->getQuantite();
             }
         }
         

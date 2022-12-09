@@ -11,23 +11,16 @@
     {% if commandes is empty %}
         <h3>{{'commande.vide'|trans}}</h3>
     {% else %}
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>{{'Date'|trans}}</th>
-                    <th>{{'Montant'|trans}}</th>
-                </tr>
-            </thead>
-            <tbody>
+        <ul class="list-group">
             {% for commande in commandes %}
-                <tr>
-                    <td>{{ commande.commande.id }}</td>
-                    <td>{{ commande.commande.dateAchat|date('Y/m/d') }}</td>
-                    <td>{{ commande.montant }}</td>
-                </tr>
+                <a href="{{ path('app_commande', {'id': commande.commande.id}) }}" class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col">#{{ commande.commande.id }}</div>
+                        <div class="col">{{ commande.commande.dateAchat|date('Y/m/d') }}</div>
+                        <div class="col-1 text-end">{{ commande.montant }}€</div>
+                    </div>
+                </a>
             {% endfor %}
-            </tbody>
-        </table>
+        </ul>
     {% endif %}
 {% endblock %}
