@@ -88,6 +88,14 @@ erreur:
   titre: An error has occurred
 
 flash:
-  produit:
+  panier:
     ajoute: Product successfully added to cart
     supprime: Product successfully deleted to cart
+    commande_validée: Order confirmed
+    error: An error has occured
+    produit:
+    ajoute: Product added
+    modifie: Product updated
+    supprime: Product deleted
+    erreur:
+      upload_image: 'Impossible d'ploader l'image'

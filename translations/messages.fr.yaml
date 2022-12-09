@@ -90,3 +90,11 @@ flash:
   panier:
     ajoute: Le produit a bien été ajouté au panier
     supprime: Le produit a bien été supprimé du panier
+    commande_validée: Votre commande est validée 
+    error: Une erreur est survenue
+  produit:
+    ajoute: Le produit à été ajouté
+    modifie: L'article a bien été modifié
+    supprime: Le produit a bien été supprimé
+    erreur:
+      upload_image: Impossible d'ploader l'image
