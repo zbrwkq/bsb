@@ -3,10 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
 {
@@ -35,6 +38,14 @@ class Produit
 
     #[ORM\Column(length: 255)]
     private ?string $photo = null;
+
+    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: ContenuPanier::class, orphanRemoval: true)]
+    private Collection $contenuPaniers;
+
+    public function __construct()
+    {
+        $this->contenuPaniers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,5 +117,35 @@ class Produit
         if($this->photo != null){
             unlink(__DIR__.'/../../public/uploads/'.$this->photo);
         }
+    }
+
+    /**
+     * @return Collection<int, ContenuPanier>
+     */
+    public function getContenuPaniers(): Collection
+    {
+        return $this->contenuPaniers;
+    }
+
+    public function addContenuPanier(ContenuPanier $contenuPanier): self
+    {
+        if (!$this->contenuPaniers->contains($contenuPanier)) {
+            $this->contenuPaniers->add($contenuPanier);
+            $contenuPanier->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContenuPanier(ContenuPanier $contenuPanier): self
+    {
+        if ($this->contenuPaniers->removeElement($contenuPanier)) {
+            // set the owning side to null (unless already changed)
+            if ($contenuPanier->getProduit() === $this) {
+                $contenuPanier->setProduit(null);
+            }
+        }
+
+        return $this;
     }
 }

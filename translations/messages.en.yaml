@@ -86,3 +86,8 @@ erreur500:
 
 erreur:
   titre: An error has occurred
+
+flash:
+  produit:
+    ajoute: Product successfully added to cart
+    supprime: Product successfully deleted to cart

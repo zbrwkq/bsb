@@ -27,6 +27,7 @@ Produit: Produit
 Quantite: Quantite
 Total: Total
 Montant panier: Montant panier
+Prix: Prix
 Bonjour: Bonjour
 inscrits_du_jour: Inscrits du jour
 paniers_non_achetes: Paniers non achetes 
@@ -83,3 +84,9 @@ erreur500:
 
 erreur:
   titre: Une erreur est survenue
+  Votre panier est vide: Votre panier est vide
+
+flash:
+  panier:
+    ajoute: Le produit a bien été ajouté au panier
+    supprime: Le produit a bien été supprimé du panier

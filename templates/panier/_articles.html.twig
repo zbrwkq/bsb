@@ -14,7 +14,7 @@
                 <td>{{ article.produit.prix }}€</td>
                 <td>{{ article.produit.prix * article.quantite }}€</td>
                 <td>
-                    <a href="#" class="btn btn-danger">{{'Supprimer'|trans}}</a>
+                    <a href="{{ path('app_contenu_panier_delete', {'id': article.id}) }}" class="btn btn-danger">{{'Supprimer'|trans}}</a>
                 </td>
             </tr>
         {% else %}

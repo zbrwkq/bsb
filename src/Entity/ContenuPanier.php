@@ -17,10 +17,6 @@ class ContenuPanier
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Produit $produit = null;
-
     #[ORM\Column]
     #[Assert\PositiveOrZero]
     private ?int $quantite = null;
@@ -32,6 +28,10 @@ class ContenuPanier
     #[ORM\JoinColumn(nullable: false)]
     private ?Panier $panier = null;
 
+    #[ORM\ManyToOne(inversedBy: 'contenuPaniers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Produit $produit = null;
+
     public function __construct()
     {
         date_default_timezone_set('Europe/Paris');
@@ -40,18 +40,6 @@ class ContenuPanier
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getProduit(): ?Produit
-    {
-        return $this->produit;
-    }
-
-    public function setProduit(?Produit $produit): self
-    {
-        $this->produit = $produit;
-
-        return $this;
     }
 
     public function getQuantite(): ?int
@@ -86,6 +74,18 @@ class ContenuPanier
     public function setPanier(?Panier $panier): self
     {
         $this->panier = $panier;
+
+        return $this;
+    }
+
+    public function getProduit(): ?Produit
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?Produit $produit): self
+    {
+        $this->produit = $produit;
 
         return $this;
     }

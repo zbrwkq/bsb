@@ -9,13 +9,15 @@ use App\Repository\ContenuPanierRepository;
 use App\Repository\PanierRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ContenuPanierController extends AbstractController
 {
     #[Route('/contenu/panier/{id}', name: 'app_contenu_panier')]
-    public function index(ContenuPanierRepository $cpr, Produit $produit = null, PanierRepository $pr, UserRepository $user): Response
+    public function index(ContenuPanierRepository $cpr, Produit $produit = null, PanierRepository $pr, TranslatorInterface $translator): Response
     {
         $contenuPanier = new ContenuPanier();
 
@@ -36,7 +38,7 @@ class ContenuPanierController extends AbstractController
                 $pr->save($panier, true);
                 $cpr->save($contenuPanier, true);
 
-                $this->addFlash('success', 'Produit ajouté au panier');
+                $this->addFlash('success',  $translator->trans('flash.panier.ajoute'));
                 return $this->redirectToRoute('app_panier');
             // sinon redirige l'utilisateur
             }else{
@@ -49,7 +51,7 @@ class ContenuPanierController extends AbstractController
                 if($cp->getProduit()->getId() == $produit->getId()){
                     $cp->setQuantite($cp->getQuantite() + 1);
                     $cpr->save($cp, true);
-                    $this->addFlash('success', 'Produit ajouté au panier');
+                    $this->addFlash('success',  $translator->trans('flash.panier.ajoute'));
                     return $this->redirectToRoute('app_panier');
                 }
             }
@@ -60,8 +62,17 @@ class ContenuPanierController extends AbstractController
             $contenuPanier->setPanier($panier);
             $cpr->save($contenuPanier, true);
         
-            $this->addFlash('success', 'Produit ajouté au panier');
+            $this->addFlash('success',  $translator->trans('flash.panier.ajoute'));
             return $this->redirectToRoute('app_panier');
         }
+    }
+    
+    #[Route('/contenu/panier/delete/{id}', name: 'app_contenu_panier_delete')]
+    public function delete(ContenuPanier $cp, ContenuPanierRepository $contenuPanierRepository, TranslatorInterface $translator): Response
+    {
+        $contenuPanierRepository->remove($cp, true);
+
+        $this->addFlash('success', $translator->trans('flash.panier.supprime'));
+        return $this->redirectToRoute('app_panier', [], Response::HTTP_SEE_OTHER);
     }
 }
