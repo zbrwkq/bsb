@@ -34,7 +34,7 @@ class PanierController extends AbstractController
                     $produit->setStock($produit->getStock() - $cp->getQuantite());
                     $em->persist($produit);
                 }
-                die;
+
                 $em->persist($p);
                 $em->flush();
 
@@ -43,10 +43,10 @@ class PanierController extends AbstractController
             }
         }
 
-        $this->addFlash('danger', 'Problème');
+        $this->addFlash('danger', 'Une erreur est survenue');
         return $this->redirectToRoute('app_produit_index');
     }
-    
+
     #[Route('/commande/{id}', name: 'app_commande')]
     public function commande(Panier $panier): Response
     {

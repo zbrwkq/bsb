@@ -66,6 +66,5 @@ class ContenuPanierController extends AbstractController
             $this->addFlash('success', 'Produit ajouté au panier');
             return $this->redirectToRoute('app_produit_index');
         }
-
     }
 }
