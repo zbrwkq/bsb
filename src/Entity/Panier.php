@@ -22,11 +22,12 @@ class Panier
     #[ORM\Column]
     private ?bool $etat = null;
 
-    #[ORM\ManyToOne(inversedBy: 'panier')]
-    private ?User $user = null;
-
     #[ORM\OneToMany(mappedBy: 'panier', targetEntity: ContenuPanier::class, orphanRemoval: true)]
     private Collection $contenuPaniers;
+
+    #[ORM\ManyToOne(inversedBy: 'paniers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -63,18 +64,6 @@ class Panier
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, ContenuPanier>
      */
@@ -104,4 +93,17 @@ class Panier
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
 }
