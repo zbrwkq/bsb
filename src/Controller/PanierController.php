@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\ContenuPanierRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Panier;
+use App\Repository\PanierRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -52,6 +53,16 @@ class PanierController extends AbstractController
     {
         return $this->render('panier/commande.html.twig', [
             'commande' => $panier,
+        ]);
+    }
+
+    #[Route('/non-achetes', name: 'app_non_achetes')]
+    public function paniersNonAchetes(PanierRepository $panier): Response
+    {
+        // dump($panier->findAll());
+        // die;
+        return $this->render('panier/non_achetes.html.twig', [
+            'panierNonAchetes' => $panier->findAll(),
         ]);
     }
 }

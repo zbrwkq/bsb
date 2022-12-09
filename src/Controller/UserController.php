@@ -52,9 +52,9 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('user/edit.html.twig', [
+        return $this->render('user/edit.html.twig', [
             'user' => $user,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -67,5 +67,14 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('app_register', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/inscrits', name: 'app_user_inscrits')]
+    public function derniersInscrits(UserRepository $ur): Response
+    {
+        $date = date('Y-m-d');
+        return $this->render('user/last_user.html.twig', [
+            'users' => $ur->registerToday($date)
+        ]);
     }
 }

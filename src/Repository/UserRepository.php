@@ -56,6 +56,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->save($user, true);
     }
 
+    /**
+     * Récupère les derniers inscrits de la journée actuelle
+     */
+    public function registerToday($date){
+        return $this->createQueryBuilder('u')
+            ->where('u.date_inscription LIKE :date')
+            ->setParameter('date', $date.'%')
+            ->orderBy('u.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */
