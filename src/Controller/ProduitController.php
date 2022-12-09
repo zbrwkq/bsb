@@ -56,6 +56,9 @@ class ProduitController extends AbstractController
         ]);
     }
 
+    /**
+     * Retourne les détails d'un produit
+     */
     #[Route('/{id}', name: 'app_produit_show', methods: ['GET'])]
     public function show(Produit $produit): Response
     {
@@ -64,6 +67,9 @@ class ProduitController extends AbstractController
         ]);
     }
 
+    /**
+     * Retourne le formulaire d'édition d'un produit
+     */
     #[Route('/edit/{id}', name: 'app_produit_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
     {
@@ -83,6 +89,9 @@ class ProduitController extends AbstractController
         ]);
     }
 
+    /**
+     * Permet de supprimer un produit
+     */
     #[Route('/{id}', name: 'app_produit_delete', methods: ['POST'])]
     public function delete(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
     {

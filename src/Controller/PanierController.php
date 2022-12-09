@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Repository\ContenuPanierRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Panier;
 use App\Repository\PanierRepository;
@@ -14,14 +13,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class PanierController extends AbstractController
 {
     #[Route('/panier', name: 'app_panier')]
-    public function index(ContenuPanierRepository $cpr): Response
+    /**
+     * Retourne le panier de l'utilisateur si il en a un
+     */
+    public function index(): Response
     {
         return $this->render('panier/index.html.twig', [
             'panier' => $this->getUser()->getActivePanier(),
         ]);
     }
 
-    // Passe l'etat du panier actif de l'utilisateur a 1 et met à jour la date d'achat
+    /**
+     * Passe l'etat du panier actif de l'utilisateur a 1 et met à jour la date d'achat
+     */
     #[Route('/panier/achat', name: 'app_panier_achat')]
     public function achatPanier(EntityManagerInterface $em): Response
     {
@@ -48,6 +52,9 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('app_produit_index');
     }
 
+    /**
+     * Retourne l'historique des commandes
+     */
     #[Route('/commande/{id}', name: 'app_commande')]
     public function commande(Panier $panier): Response
     {
@@ -56,6 +63,9 @@ class PanierController extends AbstractController
         ]);
     }
 
+    /**
+     * Retourne les paniers non achetés pour le super admin
+     */
     #[Route('/non-achetes', name: 'app_non_achetes')]
     public function paniersNonAchetes(PanierRepository $panier): Response
     {
