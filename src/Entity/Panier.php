@@ -16,17 +16,17 @@ class Panier
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(inversedBy: 'panier', cascade: ['persist', 'remove'])]
-    private ?User $utilisateur = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_achat = null;
 
     #[ORM\Column]
     private ?bool $etat = null;
 
-    #[ORM\OneToMany(mappedBy: 'panier', targetEntity: ContenuPanier::class, orphanRemoval: true)]
+    #[ORM\ManyToMany(targetEntity: ContenuPanier::class, mappedBy: 'panier')]
     private Collection $contenuPaniers;
+
+    #[ORM\ManyToOne(inversedBy: 'panier')]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -37,18 +37,6 @@ class Panier
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUtilisateur(): ?User
-    {
-        return $this->utilisateur;
-    }
-
-    public function setUtilisateur(?User $utilisateur): self
-    {
-        $this->utilisateur = $utilisateur;
-
-        return $this;
     }
 
     public function getDateAchat(): ?\DateTimeInterface
@@ -87,7 +75,7 @@ class Panier
     {
         if (!$this->contenuPaniers->contains($contenuPanier)) {
             $this->contenuPaniers->add($contenuPanier);
-            $contenuPanier->setPanier($this);
+            $contenuPanier->addPanier($this);
         }
 
         return $this;
@@ -96,11 +84,20 @@ class Panier
     public function removeContenuPanier(ContenuPanier $contenuPanier): self
     {
         if ($this->contenuPaniers->removeElement($contenuPanier)) {
-            // set the owning side to null (unless already changed)
-            if ($contenuPanier->getPanier() === $this) {
-                $contenuPanier->setPanier(null);
-            }
+            $contenuPanier->removePanier($this);
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

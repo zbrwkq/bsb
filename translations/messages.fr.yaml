@@ -2,3 +2,8 @@ Log in: Se connecter
 Please sign in: Veuillez vous inscrire
 Password: Mot de passe
 Sign in: S'inscrire
+
+accueil:
+  titre: Les produits disponibles
+  aucunProduit: Il n'y a aucun produit
+  btnCreerProduit: Créer un nouveau produit
