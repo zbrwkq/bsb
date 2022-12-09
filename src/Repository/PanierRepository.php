@@ -29,7 +29,7 @@ class PanierRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+ 
     public function remove(Panier $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);

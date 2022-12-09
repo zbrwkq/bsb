@@ -18,16 +18,12 @@ class ContenuPanierController extends AbstractController
     public function index(ContenuPanierRepository $cpr, Produit $produit = null, PanierRepository $pr, UserRepository $user): Response
     {
         $contenuPanier = new ContenuPanier();
-        $panier = null;
 
-        // Verifie si un panier impayé est déjà présent et le récupère
-        foreach($this->getUser()->getPanier() as $p){
-            if(!$p->isEtat()){
-                $panier = $p;
-            }
-        }
+        // recupère la panier impayé, null si aucun panier n'est impayé
+        $panier = $this->getUser()->getActivePanier();
+
         
-        // créé un nouveau panier sinon
+        // Si aucun panier créé un nouveau panier et insère dans la bdd
         if($panier == null){
             $panier = new Panier();
 
@@ -49,6 +45,7 @@ class ContenuPanierController extends AbstractController
                 return $this->redirectToRoute('app_produit_index');
             }
         }else{
+            // verfie que le produit n'est pas déjà présent dans le panier et incrémente la quantité si c'est le cas
             foreach($panier->getContenuPaniers() as $cp){
                 if($cp->getProduit()->getId() == $produit->getId()){
                     $cp->setQuantite($cp->getQuantite() + 1);
@@ -57,7 +54,8 @@ class ContenuPanierController extends AbstractController
                     return $this->redirectToRoute('app_produit_index');
                 }
             }
-
+            
+            // ajoute le produit sinon
             $contenuPanier->setQuantite(1);
             $contenuPanier->setProduit($produit);
             $contenuPanier->setPanier($panier);
