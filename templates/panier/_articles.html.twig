@@ -1,0 +1,30 @@
+{# {{ dump(panier.etat) }} #}
+
+{# {% if user.panier == 0 %} #}
+    <table class="table table-striped">
+        <thead>
+            <th>Nom</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+            <th>Montant total</th>
+            <th></th>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.produit.nom }}</td>
+                    <td>{{ article.quantite }}</td>
+                    <td>{{ article.produit.prix }}€</td>
+                    <td>{{ article.produit.prix * article.quantite }}€</td>
+                    <td>
+                        <a href="#" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Votre panier est vide.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{# {% endif %} #}

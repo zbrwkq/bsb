@@ -54,8 +54,6 @@ class ContenuPanierController extends AbstractController
                 }
             }
 
-            $panier = $this->getUser()->getPanier();
-            $panier = $this->getUser()->getPanier();
             $contenuPanier->setQuantite(1);
             $contenuPanier->setProduit($produit);
             $contenuPanier->addPanier($panier);

@@ -19,7 +19,7 @@ class ProduitType extends AbstractType
             ->add('prix')
             ->add('stock')
             ->add('photo', FileType::class, [
-                'label' => 'Photo du produit (jpg, png)',
+                'label' => 'Photo du produit (jpg, png, webp)',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -30,7 +30,7 @@ class ProduitType extends AbstractType
                             'image/png',
                             'image/webp',
                         ],
-                        'mimeTypesMessage' => 'Seuls les JPG et PNG sont autorisés',
+                        'mimeTypesMessage' => 'Seuls les JPG, PNG et WEBP sont autorisés',
                     ])
                 ],
             ])
