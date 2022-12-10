@@ -31,6 +31,7 @@ Prix: Prix
 Bonjour: Bonjour
 inscrits_du_jour: Inscrits du jour
 paniers_non_achetes: Paniers non achetes 
+elements: éléments
 
 compte:
   supprimer: Supprimer le compte
@@ -50,13 +51,15 @@ produit:
   detail: Détail de %sujet%
   modifier: Modifier le produit
   modifier_produit: Modification de %sujet%
+  existe_pas: Le produit n'existe pas
+  plus_stock: Produit en rupture de stock
 
   
 Panier: Panier
 panier:
   ajouter: Ajouter au panier
   mon: Mon panier
-  acheter: Achter le panier
+  acheter: Acheter le panier
   vide: Panier vide
   Votre panier est vide: Your cart is empty
 
@@ -92,6 +95,7 @@ flash:
     supprime: Le produit a bien été supprimé du panier
     commande_validée: Votre commande est validée 
     error: Une erreur est survenue
+    stock_article: Un des produits désirés n'a pas assez de stock pour votre commande
   produit:
     ajoute: Le produit à été ajouté
     modifie: L'article a bien été modifié

@@ -7,9 +7,10 @@
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="mt-3">{{'produit.detail'|trans({'%sujet%':produit.nom})}}</h1>
         {% if is_granted('ROLE_USER') %}
-            <a href="{{ path('app_contenu_panier', {'id': produit.id}) }}" class="btn btn-outline-success">{{'panier.ajouter'|trans}}</a>
+            <a href="{{ path('app_contenu_panier', {'id': produit.id}) }}" class="btn btn-outline-success {{ (produit.stock <= 0) ? 'disabled' : '' }}">{{'panier.ajouter'|trans}}</a>
         {% endif %}
     </div>
+
 
     <table class="table bg-success p-2 text-dark bg-opacity-10">
         <tbody>
@@ -27,7 +28,13 @@
             </tr>
             <tr>
                 <th>{{'Stock'|trans}}</th>
-                <td>{{ produit.stock }} {{'unitees'|trans}}</td>
+                <td>
+                {% if  produit.stock <= 0%}
+                    <span class="text-danger">{{'produit.plus_stock'|trans}}</span>
+                {% else %}
+                    {{ produit.stock }} {{'unitees'|trans}}
+                {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>{{'Photo'|trans}}</th>

@@ -19,6 +19,13 @@ class ContenuPanierController extends AbstractController
     #[Route('/contenu/panier/{id}', name: 'app_contenu_panier')]
     public function index(ContenuPanierRepository $cpr, Produit $produit = null, PanierRepository $pr, TranslatorInterface $translator): Response
     {
+        //  si le produit n'est plus en stock
+        if($produit->getStock() <= 0 ){
+            $this->addFlash('danger', $translator->trans('produit.plus_stock'));
+            return $this->redirectToRoute('app_produit_show', ['id' => $produit->getId()]);
+        }
+
+        
         $contenuPanier = new ContenuPanier();
 
         // recupère la panier impayé, null si aucun panier n'est impayé
@@ -42,7 +49,7 @@ class ContenuPanierController extends AbstractController
                 return $this->redirectToRoute('app_panier');
             // sinon redirige l'utilisateur
             }else{
-                $this->addFlash('danger', 'Le produit n\'existe pas');
+                $this->addFlash('danger', $translator->trans('produit.existe_pas'));
                 return $this->redirectToRoute('app_produit_index');
             }
         }else{

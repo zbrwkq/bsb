@@ -38,6 +38,11 @@ class PanierController extends AbstractController
     
             foreach($p->getContenuPaniers() as $cp){
                 $produit = $cp->getProduit();
+                if( $produit->getStock() - $cp->getQuantite() <= 0){
+                    
+                    $this->addFlash('danger',$translator->trans('flash.panier.stock_article'));
+                    return $this->redirectToRoute('app_panier', ['id' => $p->getId()]);
+                }
                 $produit->setStock($produit->getStock() - $cp->getQuantite());
                 $em->persist($produit);
             }

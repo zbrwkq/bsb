@@ -34,7 +34,8 @@ Montant panier: Subtotal
 Bonjour: Hello
 inscrits_du_jour: Registred today
 paniers_non_achetes: Baskets not purchased 
-
+elements: items
+Quantité: Quantity
 compte:
   supprimer: Delete the account
 
@@ -53,6 +54,8 @@ produit:
   detail: '%sujet% details'
   modifier: Update product
   modifier_produit: Updating %sujet%
+  existe_pas: The product doesn't exist
+  plus_stock: Product out of stock
 
 Panier: Cart
 panier:
@@ -93,9 +96,10 @@ flash:
     supprime: Product successfully deleted to cart
     commande_validée: Order confirmed
     error: An error has occured
-    produit:
+    stock_article: One of the desired product do not have enought stock for your order
+  produit:
     ajoute: Product added
     modifie: Product updated
     supprime: Product deleted
     erreur:
-      upload_image: 'Impossible d'ploader l'image'
+      upload_image: Can't upload the image
